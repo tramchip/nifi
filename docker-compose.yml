@@ -1,5 +1,9 @@
 version: "1"
 maintainer: "https://github.com/tramchip/nifi/"
+networks:
+  default:
+    driver: overlay
+
 services:
   nifi:
     hostname :  nifi
@@ -7,6 +11,16 @@ services:
     image: apache/nifi:latest
     deploy:
       replicas: 1
+    ports :
+      - "9090:9090" #Nifi Web Application port 
+      - 8443        #NiFi web application secure port
+      - 8082        #NiFi ListenHTTP processor port
+      - 2181        #zookeeper client port 
+      - 2881        #NiFi site to site communication port
+      - 2882        #NiFi cluster node protocol port
+      - 2888        #Zookeeper port for monitoring NiFi nodes availability
+      - 3888        #Zookeeper port for NiFi Cluster Coordinator election
+
       
     enviroment:
       - NIFI_WEB_HTTP_PORT=8080
