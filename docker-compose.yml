@@ -20,6 +20,7 @@ services:
       - 2882        #NiFi cluster node protocol port
       - 2888        #Zookeeper port for monitoring NiFi nodes availability
       - 3888        #Zookeeper port for NiFi Cluster Coordinator election
+      - 10000  #Nifi Site-to Site ports
 
       
     enviroment:
