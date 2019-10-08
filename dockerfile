@@ -71,7 +71,9 @@ RUN curl -fSL ${MIRROR_BASE_URL}/${NIFI_BINARY_PATH} -o ${NIFI_BASE_DIR}/nifi-${
     && mkdir -p ${NIFI_HOME}/database_repository \
     && mkdir -p ${NIFI_HOME}/flowfile_repository \
     && mkdir -p ${NIFI_HOME}/content_repository \
+    && mv ${NIFI_HOME}/content_repository /dev/nvme1n1 /mnt/nifi_content \
     && mkdir -p ${NIFI_HOME}/provenance_repository \
+    && mv ${NIFI_HOME}/content_repository /dev/nvme2n1 /mnt/nifi_prov \
     && mkdir -p ${NIFI_HOME}/state \
     && mkdir -p ${NIFI_LOG_DIR} \
     && ln -s ${NIFI_HOME} ${NIFI_BASE_DIR}/nifi-${NIFI_VERSION}
@@ -81,8 +83,8 @@ VOLUME ${NIFI_LOG_DIR} \
        ${NIFI_HOME}/conf \
        ${NIFI_HOME}/database_repository \
        ${NIFI_HOME}/flowfile_repository \
-       ${NIFI_HOME}/content_repository \
-       ${NIFI_HOME}/provenance_repository \
+       /dev/nvme1n1 /mnt/nifi_content \
+       /dev/nvme2n1 /mnt/nifi_prov \
        ${NIFI_HOME}/state
 
 # Clear nifi-env.sh in favour of configuring all environment variables in the Dockerfile
@@ -91,6 +93,10 @@ RUN echo "#!/bin/sh\n" > $NIFI_HOME/bin/nifi-env.sh
 
 
 WORKDIR ${NIFI_HOME}
+
+COPY       start_nifi.sh /${NIFI_HOME}/
+RUN        chmod +x ./start_nifi.sh
+CMD        ./start_nifi.sh
 
 # Apply configuration and start NiFi
 #
