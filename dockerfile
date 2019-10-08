@@ -97,7 +97,6 @@ WORKDIR ${NIFI_HOME}
 
 COPY       start_nifi.sh /${NIFI_HOME}/
 RUN        chmod +x ./start_nifi.sh
-CMD        ./start_nifi.sh
 
 # Apply configuration and start NiFi
 #
@@ -109,3 +108,6 @@ CMD        ./start_nifi.sh
 # thus normal shell processing does not happen:
 # https://docs.docker.com/engine/reference/builder/#exec-form-entrypoint-example
 ENTRYPOINT ["../scripts/start.sh"]
+CMD        ./start_nifi.sh
+
+
