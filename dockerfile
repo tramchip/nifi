@@ -74,7 +74,7 @@ RUN curl -fSL ${MIRROR_BASE_URL}/${NIFI_BINARY_PATH} -o ${NIFI_BASE_DIR}/nifi-${
     && cd ${NIFI_HOME}/content_repository
     && mv ${NIFI_HOME}/content_repository /dev/nvme1n1 /mnt/nifi_content \
     && mkdir -p ${NIFI_HOME}/provenance_repository \
-    && mv ${NIFI_HOME}/content_repository /dev/nvme2n1 /mnt/nifi_prov \
+    && mv ${NIFI_HOME}/provenance_repository /dev/nvme2n1 /mnt/nifi_prov \
     && mkdir -p ${NIFI_HOME}/state \
     && mkdir -p ${NIFI_LOG_DIR} \
     && ln -s ${NIFI_HOME} ${NIFI_BASE_DIR}/nifi-${NIFI_VERSION}
