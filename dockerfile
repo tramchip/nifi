@@ -32,6 +32,7 @@ EXPOSE 2881        #NiFi site to site communication port
 EXPOSE 2882        #NiFi cluster node protocol port
 EXPOSE 2888        #Zookeeper port for monitoring NiFi nodes availability
 EXPOSE 3888        #Zookeeper port for NiFi Cluster Coordinator election
+EXPOSE 514         #syslog event listener
 
 #JAVA
 RUN  yum install -y java-1.8.0-openjdk tar && \
