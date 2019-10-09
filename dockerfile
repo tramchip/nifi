@@ -33,17 +33,6 @@ EXPOSE 2882        #NiFi cluster node protocol port
 EXPOSE 2888        #Zookeeper port for monitoring NiFi nodes availability
 EXPOSE 3888        #Zookeeper port for NiFi Cluster Coordinator election
 
-
-# java
-RUN curl -LO 'http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm' -H 'Cookie: oraclelicense=accept-securebackup-cookie'
-RUN rpm -i jdk-8u121-linux-x64.rpm
-RUN rm jdk-8u121-linux-x64.rpm
-ENV JAVA_HOME /usr/java/default
-ENV PATH $PATH:$JAVA_HOME/bin
-RUN rm /usr/bin/java && ln -s $JAVA_HOME/bin/java /usr/bin/java
-
-ADD sh/ ${NIFI_BASE_DIR}/scripts/
-
 # Setup NiFi user and create necessary directories
 RUN groupadd -g ${GID} nifi || groupmod -n nifi `getent group ${GID} | cut -d: -f1` \
     && useradd --shell /bin/bash -u ${UID} -g ${GID} -m nifi \
