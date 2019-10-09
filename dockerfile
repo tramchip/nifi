@@ -1,4 +1,4 @@
-M openjdk:8-jre
+FROM openjdk:8-jre
 LABEL MAINTAINER = "tram (https://www.linkedin.com/in/tram-pham)"
 
 
