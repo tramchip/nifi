@@ -33,6 +33,9 @@ EXPOSE 2882        #NiFi cluster node protocol port
 EXPOSE 2888        #Zookeeper port for monitoring NiFi nodes availability
 EXPOSE 3888        #Zookeeper port for NiFi Cluster Coordinator election
 
+#JAVA
+RUN  yum install -y java-1.8.0-openjdk tar && \
+
 # Setup NiFi user and create necessary directories
 RUN groupadd -g ${GID} nifi || groupmod -n nifi `getent group ${GID} | cut -d: -f1` \
     && useradd --shell /bin/bash -u ${UID} -g ${GID} -m nifi \
