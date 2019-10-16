@@ -32,25 +32,25 @@ services:
       
     volumes:
       - type: bind
-        source: ./conf
+        source: "$(pwd)"/conf
         target: /opt/nifi/conf
       - type: bind
-        source: ./content_repository
+        source: "$(pwd)"/content_repository
         target: /dev/nvme1n1 /mnt/nifi_content
       - type: bind
-        source: ./database_repository
+        source: "$(pwd)"/database_repository
         target: /opt/nifi/database_repository
       - type: bind
-        source: ./flowfile_repository
+        source: "$(pwd)"/flowfile_repository
         target: /opt/nifi/flowfile_repository
       - type: bind
-        source: ./provenance_repository
+        source: "$(pwd)"/provenance_repository
         target: /dev/nvme2n1 /mnt/nifi_prov
       - type: bind
-        source: ./logs
+        source: "$(pwd)"/logs
         target: /opt/nifi/logs
       - type: bind
-        source: ./data
+        source: "$(pwd)"/data
         target: /opt/nifi/data
       
 
