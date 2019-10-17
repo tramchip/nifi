@@ -1,20 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@tramchip 
-2
-00tramchip/nifi
- Code Issues 0 Pull requests 0 Projects 0 Wiki Security Insights Settings
-nifi/dockerfile
-@tramchip tramchip Update dockerfile
-cc9e95b 8 days ago
-112 lines (88 sloc)  4.08 KB
-  
 FROM openjdk:8-jre
 LABEL MAINTAINER = "tram (https://www.linkedin.com/in/tram-pham)"
 
