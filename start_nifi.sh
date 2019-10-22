@@ -10,4 +10,3 @@ sed -i -e \
   conf/nifi.properties
 
 bin/nifi.sh run
-[root@ip-172-31-23-12 mybuild]#
